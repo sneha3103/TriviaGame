@@ -1,2 +1,82 @@
 alert ("hi");
+$(document).ready(function() {
+    var officeAudio =new Audio("./assets/TheOffice.mp3")
+    var timerCountdown = 30;
+    var correctGuess = 0;
+    var incorrectGuess = 0;
+    var unanswered = 0;
+    var answerPicked = false;
+    var gifs = ["q1", "q2", "q3" , "q4", "q5", "q6" , "q7", "q8", "q9", "q10"];
 
+    var quiz = [
+        {
+            question: "Where did Andy Bernard attend college?",
+            options: ["Harvard", "Duke", "Cornell" ,"Dartmouth"],
+            correctAnswer: 2
+        },
+
+        {
+            question: "How many acres is Schrute Farms?",
+            options: ["50", "100" , "40", "60"],
+            correctAnswer: 3
+        },
+
+        {
+            question: "What character\(s) dressed up as the Joker in the Halloween episode?",
+            options: ["Creed", "Dwight and Kevin", "Kevin" , "Creed, Dwight, and Kevin"],
+            correctAnswer: 3
+        },
+
+        {
+            question: "When Dwight lies and tells everyone they are getting a thousand dollar raise, what does Stanley tell his wife to buy?",
+            options: ["Car", "TV", "Wallpaper",  "Shoes"],
+            correctAnswer: 2
+
+        },
+
+        {
+            question: "What was Michael trying to grill when he burned his foot?",
+            options: ["Hot Dogs" , "Bacon", "Hamburgers", "Steak"],
+            correctAnswer: 1
+        },
+
+        {
+            question: "What is Dwight\'s Sensei\'s name?",
+            options: ["Ira", "George", "Mr. Miyagi", "Michael"],
+            correctAnswer: 0
+        },
+
+        {
+            question: "In the client episode, where does Jan and Michael take Christian, the Lackawanna County representative?",
+            options: ["Pizza by Alfredo", "Alfredo's Pizza Company", "Poor Richard\'s", "Chili\'s"],
+            correctAnswer: 3
+        },
+
+        {
+            question: "After the Fun Run to beat rabies, to whom is the oversized check made out to?",
+            options: ["Rabies Organization", "Meredith" , "Science", "Michael Scott"],
+            correctAnswer: 2
+        },
+
+        {
+            question: "What is Erin's real first name?",
+            options: ["Kelly", "Marie", "Elizabeth", "Sarah"],
+            correctAnswer: 0
+        },
+
+        {
+            question: "What did Ryan leave in the toaster oven that caused the fire?",
+            options: ["His poptart", "His cheese pita", "His bagel", "His pizza"],
+            correctAnswer: 1
+        }
+
+
+    ] 
+
+
+    $('#startbutton').on('click', function(){
+        officeAudio.play();
+    }
+
+
+});
