@@ -1,10 +1,13 @@
 alert ("hi");
+// $(".timer").hide();
 $(document).ready(function() {
     var officeAudio =new Audio("./assets/TheOffice.mp3")
-    var timerCountdown = 30;
+    var timerCounter = 30;
+    var timerId = 0;
     var correctGuess = 0;
     var incorrectGuess = 0;
     var unanswered = 0;
+    var questionNumber = 0;
     var answerPicked = false;
     var gifs = ["q1", "q2", "q3" , "q4", "q5", "q6" , "q7", "q8", "q9", "q10"];
 
@@ -75,8 +78,47 @@ $(document).ready(function() {
 
 
     $('#startbutton').on('click', function(){
+        $(this).hide();
+        officeAudio.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
         officeAudio.play();
-    }
-
+        $(".timer").show();
+        var correctGuess = 0;
+        var incorrectGuess = 0;
+        var unanswered = 0;
+        timer ();
+    })
 
 });
+   //Function for the Timer
+   var timerCounter = 30;
+   function timer () {
+      
+       var timerId = setInterval(triviaCount, 1000);
+       function triviaCount () {
+           if (timerCounter == 0) {
+               clearInterval(timerId);
+           }
+           else {
+            $(".timer-number").html(timerCounter);
+            timerCounter--;
+           }
+
+        }
+   
+       };
+       console.log(timer);
+   ;
+
+
+
+   
+
+
+
+
+
+
+
