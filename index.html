@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- LINKING BOOTSTRAP -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+   <!--LINKING CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+   <!-- LINKING jQUERY -->
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+   
+    <title>The Office Trivia!</title>
+</head>
+<body>
+   
+    <div class ="container-fluid text-center">
+        <img src="./assets/images/theofficemain.jpg" class="img-fluid" alt="Responsive image">
+
+        <row>
+                <!-- <div class="offset-md-5"></div> -->
+                <div class="offset-md-5 col-md-2">
+                    <button type="button" class="btn start btn-success" id="startbutton">Start Game!</button>
+                </div>
+                <!-- <div class="col-md-5"></div> -->
+        </row>
+
+        <row>
+               <!--My trivia gif stops moving after audio starts playing? -->
+               
+                <div class="offset-md-5 col-md-2">
+                    <img src ="./assets/trivialogo.gif" id="triviatitle">
+                </div>
+               
+
+        </row>
+
+    </div>
+        
+ 
+
+        <audio controls autoplay>
+                <source src="./assets/TheOffice.mp3" type="audio/mpeg" id="officeaudio">
+              </audio>
+
+        
+ <!-- LINKING JAVASCRIPT -->
+ <script src="./assets/javascript/app.js"></script>
+</body>
+</html>

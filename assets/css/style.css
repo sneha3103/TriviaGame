@@ -1,0 +1,27 @@
+body {
+    background-color: rgba(0, 64, 255, 0.18);
+}
+
+/* .img-fluid {
+    max-width: 66%;
+    height: 359px;
+    width: 739px;
+    position: relative;
+    left: 321px; */
+
+.img-fluid {
+        max-width: 48%;
+        height: auto;
+    }
+
+#startbutton {
+    position: relative;
+    top: 20px;
+}
+
+#triviatitle {
+    position: relative;
+    bottom: 420px;
+    left: 241px;
+    width: 80%;
+}
