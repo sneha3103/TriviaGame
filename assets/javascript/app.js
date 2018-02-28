@@ -78,7 +78,7 @@ $(document).ready(function() {
 
     ] 
 
-
+ 
     $('#startbutton').on('click', function(){
         $(this).hide();
         officeAudio.addEventListener('ended', function() {
@@ -92,6 +92,8 @@ $(document).ready(function() {
         var unanswered = 0;
         timer ();
     })
+
+//Restart Button?
 
 
    //Function for the Timer
@@ -109,8 +111,22 @@ $(document).ready(function() {
            }
 
         }
+    
+    function questionIsAnswered () {
+        if (questionNumber < 9) {
+            questionNumber++;
+            console.log(questionNumber);
+            game();
+            $(".results").empty();
+            $(".timer").show();
+            timerCounter = 30;
+            timer();
+        } else {
+            gameIsOver();
+        }
+    }
 
-
+ //The function game is to populate the appropiate question with the correct option choices onto the HTML site. 
     function game () {
         // $(".questions").html("<p class='question-text'>" + quiz[questionNumber].question + "<p>");
 
@@ -129,6 +145,9 @@ $(document).ready(function() {
             $("#q1c").html("C) " + quiz[0].options[2]);
             $("#q1d").html("D) " + quiz[0].options[3]);
      }
+    //    answerInput= quiz[questionNumber].options[0] + quiz[questionNumber].options[1] + quiz[questionNumber].options[2] + quiz[questionNumber].options[3];
+
+    //    $(".answerChoice").html(answerInput);
        
     }
     game();
@@ -137,6 +156,83 @@ $(document).ready(function() {
        };
     //    console.log(timer);
    ;
+
+   //When user clicks the answer and it is correct
+   function correctGuesses() {
+       correctGuess++;
+       console.log(correctGuess);
+       $(".timer").hide();
+       $(".questions").empty();
+       $(".answers").empty();
+       $("results").html("YAY! You got it right!");
+       setTimeout(questionIsAnswered, 1000*3);
+       };
+
+   //When user selects the wrong answer
+    function incorrectGuesses() {
+        incorrectGuess++;
+        console.log(incorrectGuess);
+        $(".timer").hide();
+        $(".questions").empty();
+        $(".answers").empty();
+        $("results").html("Wrong Answer!");
+        setTimeout(questionIsAnswered, 1000*3);
+    };
+
+    //When user runs out of time
+    function timeRunsOut () {
+        unanswered++;
+        console.log(unanswered);
+        $(".timer").hide();
+        $(".questions").empty();
+        $(".answers").empty();
+        $("results").html("Whoops, time is out!");
+        setTimeout(questionIsAnswered, 1000*3);
+    };
+
+    //Function to reset the game
+
+    function gameReset () {
+        $(".timer").hide();
+        $(".questions").empty();
+        $(".answers").empty();
+        $(".results").empty();
+
+        questionNumber = 0;
+        correctGuess = 0;
+        incorrectGuess = 0;
+        unanswered = 0;
+        timerCounter = 30;
+
+        game();
+        timer();
+    };
+
+    //Function for when the game is over
+    function gameOver() {
+        $(".timer").hide();
+        $(".questions").empty();
+        $(".answers").empty();
+        $(".results").html("Your Results: Correct Answers: " + correctGuess + "Incorrect Answers: " + incorrectGuess + "Unanswered: " + unanswered);
+    };
+
+    $(".answerChoice").on("click", ".answerChoice", function(event) {
+        answerChoice = $(this).text();
+        rightGuess = quiz[questionNumber].options[quiz[questionNumber].correctAnswer];
+        clearInterval(timerId)
+        if (answerChoice === rightGuess) {
+            correctGuesses();
+        } else if (answerChoice !== rightGuess) {
+            incorrectGuesses();
+        }
+
+    });
+
+
+
+
+
+
 });
 
 
