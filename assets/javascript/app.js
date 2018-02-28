@@ -1,5 +1,6 @@
 alert ("hi");
-// $(".timer").hide();
+$(".timer").hide();
+// var numQuestions = 10;
 $(document).ready(function() {
     var officeAudio =new Audio("./assets/TheOffice.mp3")
     var timerCounter = 30;
@@ -10,6 +11,7 @@ $(document).ready(function() {
     var questionNumber = 0;
     var answerPicked = false;
     var gifs = ["q1", "q2", "q3" , "q4", "q5", "q6" , "q7", "q8", "q9", "q10"];
+    var numQuestions = 10;
 
     var quiz = [
         {
@@ -91,7 +93,7 @@ $(document).ready(function() {
         timer ();
     })
 
-});
+
    //Function for the Timer
    var timerCounter = 30;
    function timer () {
@@ -107,11 +109,35 @@ $(document).ready(function() {
            }
 
         }
+
+
+    function game () {
+        // $(".questions").html("<p class='question-text'>" + quiz[questionNumber].question + "<p>");
+
+        // answerInput = "<p class='answerChoice'>" + quiz[questionNumber].options[0] + "</p><p class='answerChoice'>"+ quiz[questionNumber].options[1] +"</p><p class='answerChoice'>"+ quiz[questionNumber].options[2] +"</p><p class='answerChoice'>"+ quiz[questionNumber].options[3] +"</p>";
+
+	    // $(".answers").html(answerInput);
+    
+ 
+        for (var i=0; i<numQuestions; i++) {
+            $(".questions").html(quiz[0].question);
+        }
+
+        for (var i=0; i<numQuestions; i++) {
+            $("#q1a").html("A) " + quiz[0].options[0]);
+            $("#q1b").html("B) " + quiz[0].options[1]);
+            $("#q1c").html("C) " + quiz[0].options[2]);
+            $("#q1d").html("D) " + quiz[0].options[3]);
+     }
+       
+    }
+    game();
+    // console.log(game);
    
        };
-       console.log(timer);
+    //    console.log(timer);
    ;
-
+});
 
 
    
