@@ -1,6 +1,6 @@
 alert ("hi");
 $(".timer").hide();
-// var numQuestions = 10;
+
 $(document).ready(function() {
     var officeAudio =new Audio("./assets/TheOffice.mp3")
     var timerCounter = 30;
@@ -12,6 +12,7 @@ $(document).ready(function() {
     var answerPicked = false;
     var gifs = ["q1", "q2", "q3" , "q4", "q5", "q6" , "q7", "q8", "q9", "q10"];
     var numQuestions = 10;
+
 
     var quiz = [
         {
@@ -87,23 +88,26 @@ $(document).ready(function() {
         }, false);
         officeAudio.play();
         $(".timer").show();
-        var correctGuess = 0;
-        var incorrectGuess = 0;
-        var unanswered = 0;
-        timer ();
+        correctGuess = 0;
+        incorrectGuess = 0;
+        unanswered = 0;
+        game();
+        timer();
+       
     })
 
 //Restart Button?
 
 
    //Function for the Timer
-   var timerCounter = 30;
+
    function timer () {
       
        var timerId = setInterval(triviaCount, 1000);
        function triviaCount () {
-           if (timerCounter == 0) {
+           if (timerCounter === 0) {
                clearInterval(timerId);
+               timeRunsOut();
            }
            else {
             $(".timer-number").html(timerCounter);
@@ -112,51 +116,36 @@ $(document).ready(function() {
 
         }
     
-    function questionIsAnswered () {
-        if (questionNumber < 9) {
-            questionNumber++;
-            console.log(questionNumber);
-            game();
-            $(".results").empty();
-            $(".timer").show();
-            timerCounter = 30;
-            timer();
-        } else {
-            gameIsOver();
-        }
-    }
+    };
 
- //The function game is to populate the appropiate question with the correct option choices onto the HTML site. 
-    function game () {
-        // $(".questions").html("<p class='question-text'>" + quiz[questionNumber].question + "<p>");
-
-        // answerInput = "<p class='answerChoice'>" + quiz[questionNumber].options[0] + "</p><p class='answerChoice'>"+ quiz[questionNumber].options[1] +"</p><p class='answerChoice'>"+ quiz[questionNumber].options[2] +"</p><p class='answerChoice'>"+ quiz[questionNumber].options[3] +"</p>";
-
-	    // $(".answers").html(answerInput);
-    
- 
-        for (var i=0; i<numQuestions; i++) {
-            $(".questions").html(quiz[0].question);
-        }
-
-        for (var i=0; i<numQuestions; i++) {
-            $("#q1a").html("A) " + quiz[0].options[0]);
-            $("#q1b").html("B) " + quiz[0].options[1]);
-            $("#q1c").html("C) " + quiz[0].options[2]);
-            $("#q1d").html("D) " + quiz[0].options[3]);
-     }
-    //    answerInput= quiz[questionNumber].options[0] + quiz[questionNumber].options[1] + quiz[questionNumber].options[2] + quiz[questionNumber].options[3];
-
-    //    $(".answerChoice").html(answerInput);
-       
-    }
-    game();
-    // console.log(game);
-   
-       };
-    //    console.log(timer);
    ;
 
+    //The function game is to populate the appropiate question with the correct option choices onto the HTML site.
+   function game () {
+
+   
+    $(".questions").html("<p class='question-text'>" + quiz[questionNumber].question + "<p>");
+
+        answerInput = "<p class='answerChoice'>" + quiz[questionNumber].options[0] + "</p><p class='answerChoice'>"+ quiz[questionNumber].options[1] +"</p><p class='answerChoice'>"+ quiz[questionNumber].options[2] +"</p><p class='answerChoice'>"+ quiz[questionNumber].options[3] +"</p>";
+
+        $(".answers").html(answerInput);
+    }
+    
+    game();
+
+   function questionIsAnswered () {
+    if (questionNumber < 9) {
+        questionNumber++;
+        console.log(questionNumber);
+        game();
+        $(".results").empty();
+        $(".timer").show();
+        timerCounter = 30;
+        timer();
+    } else {
+        gameIsOver();
+    }
+}
    //When user clicks the answer and it is correct
    function correctGuesses() {
        correctGuess++;
@@ -164,8 +153,8 @@ $(document).ready(function() {
        $(".timer").hide();
        $(".questions").empty();
        $(".answers").empty();
-       $("results").html("YAY! You got it right!");
-       setTimeout(questionIsAnswered, 1000*3);
+       $(".results").html("<p class='answer-message'>YAY! You got it right</p>");
+       setTimeout(questionIsAnswered, 1000*2);
        };
 
    //When user selects the wrong answer
@@ -176,7 +165,7 @@ $(document).ready(function() {
         $(".questions").empty();
         $(".answers").empty();
         $("results").html("Wrong Answer!");
-        setTimeout(questionIsAnswered, 1000*3);
+        setTimeout(questionIsAnswered, 1000*2);
     };
 
     //When user runs out of time
@@ -187,7 +176,7 @@ $(document).ready(function() {
         $(".questions").empty();
         $(".answers").empty();
         $("results").html("Whoops, time is out!");
-        setTimeout(questionIsAnswered, 1000*3);
+        setTimeout(questionIsAnswered, 1000*2);
     };
 
     //Function to reset the game
@@ -209,16 +198,20 @@ $(document).ready(function() {
     };
 
     //Function for when the game is over
-    function gameOver() {
+    function gameIsOver() {
         $(".timer").hide();
         $(".questions").empty();
         $(".answers").empty();
-        $(".results").html("Your Results: Correct Answers: " + correctGuess + "Incorrect Answers: " + incorrectGuess + "Unanswered: " + unanswered);
+        $(".results").html("<p>Your Results: </p> <br> <p>Correct Answers: " + correctGuess + "</p> Incorrect Answers:  " + incorrectGuess + "<br> <p> Unanswered:  " + unanswered + "</p>");
     };
 
-    $(".answerChoice").on("click", ".answerChoice", function(event) {
+
+    //Created a function to allow the user to click on the selected answer
+    $(".answers").on("click", ".answerChoice", function(event) {
         answerChoice = $(this).text();
         rightGuess = quiz[questionNumber].options[quiz[questionNumber].correctAnswer];
+        console.log(answerChoice);
+        console.log(rightGuess);
         clearInterval(timerId)
         if (answerChoice === rightGuess) {
             correctGuesses();
@@ -227,10 +220,6 @@ $(document).ready(function() {
         }
 
     });
-
-
-
-
 
 
 });
