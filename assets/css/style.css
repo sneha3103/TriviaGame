@@ -1,5 +1,8 @@
 body {
-    background-color: rgba(0, 64, 255, 0.18);  
+    /* background-color: rgba(0, 64, 255, 0.18);  */
+    background-image: url("../images/officebackground3.jpg"); 
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 
