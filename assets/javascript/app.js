@@ -12,28 +12,33 @@ $(document).ready(function() {
     var answerPicked = false;
     var gifs = ["q1", "q2", "q3" , "q4", "q5", "q6" , "q7", "q8", "q9", "q10"];
     var numQuestions = 10;
-
+    
 
     var quiz = [
         {
+            image: "../images/q1.gif",
             question: "Where did Andy Bernard attend college?",
             options: ["Harvard", "Duke", "Cornell" ,"Dartmouth"],
             correctAnswer: 2
         },
 
         {
+            image: "./assets/images/q2.gif",
             question: "How many acres is Schrute Farms?",
             options: ["50", "100" , "40", "60"],
             correctAnswer: 3
+            
         },
 
         {
+            image: "./assets/images/q3.gif",
             question: "What character\(s) dressed up as the Joker in the Halloween episode?",
             options: ["Creed", "Dwight and Kevin", "Kevin" , "Creed, Dwight, and Kevin"],
             correctAnswer: 3
         },
 
         {
+            image: "./assets/images/q4.gif",
             question: "When Dwight lies and tells everyone they are getting a thousand dollar raise, what does Stanley tell his wife to buy?",
             options: ["Car", "TV", "Wallpaper",  "Shoes"],
             correctAnswer: 2
@@ -41,36 +46,42 @@ $(document).ready(function() {
         },
 
         {
+            image: "./assets/images/q5.gif",
             question: "What was Michael trying to grill when he burned his foot?",
             options: ["Hot Dogs" , "Bacon", "Hamburgers", "Steak"],
             correctAnswer: 1
         },
 
         {
+            image: "./assets/images/q6.gif",
             question: "What is Dwight\'s Sensei\'s name?",
             options: ["Ira", "George", "Mr. Miyagi", "Michael"],
             correctAnswer: 0
         },
 
         {
+            image: "./assets/images/q7.gif",
             question: "In the client episode, where does Jan and Michael take Christian, the Lackawanna County representative?",
             options: ["Pizza by Alfredo", "Alfredo's Pizza Company", "Poor Richard\'s", "Chili\'s"],
             correctAnswer: 3
         },
 
         {
+            image: "./assets/images/q8.gif",
             question: "After the Fun Run to beat rabies, to whom is the oversized check made out to?",
             options: ["Rabies Organization", "Meredith" , "Science", "Michael Scott"],
             correctAnswer: 2
         },
 
         {
+            image: "./assets/images/q9.gif",
             question: "What is Erin's real first name?",
             options: ["Kelly", "Marie", "Elizabeth", "Sarah"],
             correctAnswer: 0
         },
 
         {
+            image: "./assets/images/q10.gif",
             question: "What did Ryan leave in the toaster oven that caused the fire?",
             options: ["His poptart", "His cheese pita", "His bagel", "His pizza"],
             correctAnswer: 1
@@ -147,6 +158,7 @@ var timerId;
         gameIsOver();
     }
 }
+
    //When user clicks the answer and it is correct
    function correctGuesses() {
        correctGuess++;
@@ -154,7 +166,7 @@ var timerId;
        $(".timer").hide();
        $(".questions").empty();
        $(".answers").empty();
-       $(".results").html("<p class='answer-message'>YAY! You got it right</p>");
+       $(".results").html("<p class='answer-message'>YAY! You got it right</p>" + "<img src= " + quiz[questionNumber].image + "</>");
        setTimeout(questionIsAnswered, 1000*2);
        };
 
@@ -165,7 +177,7 @@ var timerId;
         $(".timer").hide();
         $(".questions").empty();
         $(".answers").empty();
-        $("results").html("<p class='answer-message'>Nice Try, You were absolutely average!</p>");
+        $("results").html("<p class='answer-message'>Nice Try, You were absolutely average!</p>" + "<img src= " + quiz[questionNumber].image + "</>");
         setTimeout(questionIsAnswered, 1000*2);
     };
 
@@ -176,7 +188,7 @@ var timerId;
         $(".timer").hide();
         $(".questions").empty();
         $(".answers").empty();
-        $("results").html("<p class='answer-message'>Whoops, time is out!</p>");
+        $("results").html("<p class='answer-message'>Whoops, time is out!</p>" +"<img src= " + quiz[questionNumber].image + "</>");
         setTimeout(questionIsAnswered, 1000*2);
     };
 
