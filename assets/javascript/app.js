@@ -1,4 +1,3 @@
-alert ("hi");
 $(".timer").hide();
 
 $(document).ready(function() {
@@ -106,8 +105,6 @@ $(document).ready(function() {
         timer();
        
     })
-
-//Restart Button?
 
 var timerId;
    //Function for the Timer
