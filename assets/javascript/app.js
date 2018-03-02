@@ -4,7 +4,7 @@ $(".timer").hide();
 $(document).ready(function() {
     var officeAudio =new Audio("./assets/TheOffice.mp3")
     var timerCounter = 30;
-    var timerId = 0;
+    var timerId;
     var correctGuess = 0;
     var incorrectGuess = 0;
     var unanswered = 0;
@@ -79,10 +79,10 @@ $(document).ready(function() {
 
     ] 
 
- 
-    $('#startbutton').on('click', function(){
+ //When user presses Start, the button should hide and then the theme song of the office should play. Also, the timer should start counting down from 30 seconds. The game function should start also.
+    $("#startbutton").on("click", function(){
         $(this).hide();
-        officeAudio.addEventListener('ended', function() {
+        officeAudio.addEventListener("ended", function() {
             this.currentTime = 0;
             this.play();
         }, false);
@@ -98,12 +98,12 @@ $(document).ready(function() {
 
 //Restart Button?
 
-
+var timerId;
    //Function for the Timer
 
    function timer () {
       
-       var timerId = setInterval(triviaCount, 1000);
+       timerId = setInterval(triviaCount, 1000);
        function triviaCount () {
            if (timerCounter === 0) {
                clearInterval(timerId);
@@ -115,6 +115,7 @@ $(document).ready(function() {
            }
 
         }
+        // console.log(timer);
     
     };
 
@@ -136,7 +137,7 @@ $(document).ready(function() {
    function questionIsAnswered () {
     if (questionNumber < 9) {
         questionNumber++;
-        console.log(questionNumber);
+        // console.log(questionNumber);
         game();
         $(".results").empty();
         $(".timer").show();
@@ -149,7 +150,7 @@ $(document).ready(function() {
    //When user clicks the answer and it is correct
    function correctGuesses() {
        correctGuess++;
-       console.log(correctGuess);
+    //    console.log(correctGuess);
        $(".timer").hide();
        $(".questions").empty();
        $(".answers").empty();
@@ -160,22 +161,22 @@ $(document).ready(function() {
    //When user selects the wrong answer
     function incorrectGuesses() {
         incorrectGuess++;
-        console.log(incorrectGuess);
+        // console.log(incorrectGuess);
         $(".timer").hide();
         $(".questions").empty();
         $(".answers").empty();
-        $("results").html("Wrong Answer!");
+        $("results").html("<p class='answer-message'>Nice Try, You were absolutely average!</p>");
         setTimeout(questionIsAnswered, 1000*2);
     };
 
     //When user runs out of time
     function timeRunsOut () {
         unanswered++;
-        console.log(unanswered);
+        // console.log(unanswered);
         $(".timer").hide();
         $(".questions").empty();
         $(".answers").empty();
-        $("results").html("Whoops, time is out!");
+        $("results").html("<p class='answer-message'>Whoops, time is out!</p>");
         setTimeout(questionIsAnswered, 1000*2);
     };
 
@@ -210,9 +211,10 @@ $(document).ready(function() {
     $(".answers").on("click", ".answerChoice", function(event) {
         answerChoice = $(this).text();
         rightGuess = quiz[questionNumber].options[quiz[questionNumber].correctAnswer];
-        console.log(answerChoice);
-        console.log(rightGuess);
+        // console.log(answerChoice);
+        // console.log(rightGuess);
         clearInterval(timerId)
+        console.log(timerId);
         if (answerChoice === rightGuess) {
             correctGuesses();
         } else if (answerChoice !== rightGuess) {
